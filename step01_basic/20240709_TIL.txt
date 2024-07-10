@@ -76,4 +76,20 @@
 6. ;(세미콜론)
 - sql문장 끝, java, js의 하나의 문장(로직) 마무리시 필수 
 
+7. lombok 설치
+	1. tool에 매핑
+		STS등등 한번만 설정
+		다운로드
+		>java -jar lombok.jar
+			-sts.exe 아이콘 선택해서 install 시킴 
+			-sts 디렉토리에 lombok.jar 가 자동운영
+				sts*.ini 라는 설정파일에 자동 등록 
+				
+				
+	2. project에 library 즉, 코드에서 사용하기 위한 셋팅 
+
+8. maven
+	-jdk에서 내장되어 있지 않은 library를 내 로컬 시스템에 자동 다운로드하게 하는 tool
+	- 개발시에 필요한 library = 의존관계 library
+	- sts 에서 plug in 형식으로 보유 
 
