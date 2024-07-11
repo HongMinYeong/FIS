@@ -27,17 +27,20 @@ public class ArrayListTest {
 // 		String v2 = arr.get(0);
 //	}
 
-	@Test
+//	@Test
 	public void m2() {
 		
  		ArrayList<String> arr = new ArrayList<String>();
- 		arr.add("1");
+ 		arr.add("1234");
  		arr.add("ab");
  		arr.add("abc");
  		
  		
  		String v = arr.get(0);
  		System.out.println(v + " " + v.length());
+ 		
+ 		arr.remove(1);
+ 		System.out.println(arr.get(1));
 	}
 
 }
