@@ -48,7 +48,7 @@ public class OOP1 extends Object {
 // p = Parent 타입, Child 클래스의 객체를 가리킴.
 		
 		p.id = "master";
-		p.grade = "vvip"; //error
+//		p.grade = "vvip"; //error
 		// p 는 Parent 객체를 참조하는 변수라서 Parent 클래스에는 grade라는 필드가 없음 
 		//p 변수를 통해 Parent 클래스에 정의된 메서드나 변수에 접근할 수 있지만, Child 클래스에 추가로 정의된 메서드나 변수에 접근하려면 형변환(casting)을 통해야 함.
 		
