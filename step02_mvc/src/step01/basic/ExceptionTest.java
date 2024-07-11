@@ -14,7 +14,7 @@ public class ExceptionTest {
 //		예외 발생시점이 '실행시점' (컴파일 시점이 x)
 		// 배열의 index에 어긋나는 action
 		int[] i = {1,2};
-		System.out.println(i[22]); //컴파일 O, 실행 x
+//		System.out.println(i[22]); //컴파일 O, 실행 x
 		//컴파일도 안되는 애들은 try-catch 문 필수.
 		
 		System.out.println("**************");
