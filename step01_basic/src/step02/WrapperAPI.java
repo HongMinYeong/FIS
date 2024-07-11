@@ -55,6 +55,9 @@ public class WrapperAPI {
 //		int v3 = Integer.parseInt("오"); //컴파일 가능 실행 불가능 
 		//대입을 못함 -> 예외 처리 필요 
 		
+		//jdk1.4 에서 허용되는 문법 
+		Integer i2 = new Integer(3); //문법상 맞으나 별로 좋지는 않은,,, 
+		
 	}
 	
 
