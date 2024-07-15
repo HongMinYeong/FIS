@@ -9,23 +9,81 @@ import org.junit.Test;
 import model.domain.Customer;
 
 public class LevelUp6Optional {
+	@Test
+	public void step082() {
+		//? null이어도 실행 되도록 중지되지 x
+		// 데이터 있는 경우  
+		
+	    HashMap<String, Customer> map = new HashMap<>();
+	    map.put("id1", new Customer("id1", "pw1", 5, "상암", "vip", "M"));
+	    map.put("id2", new Customer("id2", "pw2", 15, "마포", "gold", "F"));
+	    map.put("id3", new Customer("id3", "pw3", 25, "상암", "gold", "F"));
+	    
+		Optional<HashMap<String, Customer>> opt = Optional.ofNullable(map);
+		
+	    System.out.println("1======");
+	    System.out.println("2-----------");
+	    
+	    opt.ifPresent(m -> { //null이 아닌 경우 실행  
+	    	System.out.println(m.values().stream()
+	    					.filter(c->c.getAge() < 20)
+	    					.mapToInt(Customer::getAge)
+	    					.sum());
+	    	
+	    });
+
+	    System.out.println("3----------");
+	}
+//	@Test
+	public void step081() {
+		//? null이어도 실행 되도록 중지되지 x
+		HashMap<String, Customer> map = null;
+		
+//	    HashMap<String, Customer> map = new HashMap<>();
+//	    map.put("id1", new Customer("id1", "pw1", 5, "상암", "vip", "M"));
+		Optional<HashMap<String, Customer>> opt = Optional.ofNullable(map);
+	    System.out.println("1======");
+	    System.out.println("2-----------");
+	    opt.ifPresent(m -> {
+	    	System.out.println(m.values().stream()
+	    					.filter(c->c.getAge() < 20)
+	    					.mapToInt(Customer::getAge)
+	    					.sum());
+	    	
+	    });
+
+	    System.out.println("3----------");
+	}
 	/*
 	 * 프로그램 실행 중지를 방지하기 위한 처리 코드는 어떻게 ? 
 	 * */
-	@Test
+//	@Test
 	public void step08() {
-		HashMap<String, Customer> map = null;
-		System.out.println("1======");
 		//? null이어도 실행 되도록 
-		int sum = map.values()
-					.stream()
-					.filter(customer -> customer.getAge()<10)
-					.mapToInt(Customer::getAge).sum();		
+		HashMap<String, Customer> map = null;
 		
-		System.out.println("2-----------");
-		System.out.println(sum);
-		System.out.println("3----------");
+//	    HashMap<String, Customer> map = new HashMap<>();
+//	    map.put("id1", new Customer("id1", "pw1", 5, "상암", "vip", "M"));
+
+	    System.out.println("1======");
+	    Optional<HashMap<String, Customer>> opt = Optional.ofNullable(map);
+
+	  
+	    opt.ifPresent(m -> {
+	        int sum = m.values()
+	                    .stream()
+	                    .filter(customer -> customer.getAge() < 10)
+	                    .mapToInt(Customer::getAge)
+	                    .sum();
+	        System.out.println(sum); 
+	    });
+
+	    System.out.println("2-----------");
+	    
+
+	    System.out.println("3----------");
 	}
+
 //	@Test
 	public void step07() {
 //		String v = null;
