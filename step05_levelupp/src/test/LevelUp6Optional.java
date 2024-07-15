@@ -9,7 +9,24 @@ import org.junit.Test;
 import model.domain.Customer;
 
 public class LevelUp6Optional {
+	/*
+	 * 프로그램 실행 중지를 방지하기 위한 처리 코드는 어떻게 ? 
+	 * */
 	@Test
+	public void step08() {
+		HashMap<String, Customer> map = null;
+		System.out.println("1======");
+		//? null이어도 실행 되도록 
+		int sum = map.values()
+					.stream()
+					.filter(customer -> customer.getAge()<10)
+					.mapToInt(Customer::getAge).sum();		
+		
+		System.out.println("2-----------");
+		System.out.println(sum);
+		System.out.println("3----------");
+	}
+//	@Test
 	public void step07() {
 //		String v = null;
 		String v = "fisa";
