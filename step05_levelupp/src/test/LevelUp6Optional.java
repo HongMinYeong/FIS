@@ -9,12 +9,24 @@ import org.junit.Test;
 import model.domain.Customer;
 
 public class LevelUp6Optional {
+	@Test
+	public void step07() {
+//		String v = null;
+		String v = "fisa";
+		Optional<String> opt = Optional.ofNullable(v); //null 값 불허 
+		System.out.println("\n **** step07 ****");
+		System.out.println(opt.isEmpty()); //null 인 경우 true
+		System.out.println(opt.isPresent()); //false
+		System.out.println(opt.orElse("null인 경우 출력 메시지"));
+		opt.ifPresent(v2 -> System.out.println(v2)); //존재하면 출력 존재 안하면 출력 x 
+		System.out.println("\n ----- 정상 실행 유지  ");
+	}
 	
 	/* of() : null 은 불허 
 	 * 		- ifPresent() 불필요 
 	 */
 	
-	@Test
+//	@Test
 	public void step06() {
 //		String v = null;
 		String v = "fisa";
