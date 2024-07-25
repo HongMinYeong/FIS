@@ -1,6 +1,7 @@
 package step01.basic;
 
 import java.sql.Connection;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
@@ -17,11 +18,12 @@ public class ConnectionProperty2 {
 	 * 
 	 */
 
-	@Test
+//	@Test
 	public void connect() throws SQLException {
 		Connection conn = null;
 		Statement stmt = null;
 		ResultSet rs = null;
+		
 		try {
 			// 데이터베이스 연결
 			conn = DBUtil.getConnection();
@@ -42,22 +44,30 @@ public class ConnectionProperty2 {
 //		System.out.println("예외 처리로 인해 정상, 비정상 이어도 실행되는 영역");
 	}
 
+	//insert into dept values (55, 'a','b')
 	@Test
 	public void connect2() throws SQLException {
 		Connection conn = null;
-		Statement stmt = null;
-		ResultSet rs = null;
+		PreparedStatement pstmt = null;
+		
 		try {
 			// 데이터베이스 연결
 			conn = DBUtil.getConnection();
-			stmt = conn.createStatement();
-			rs = stmt.executeQuery("SELECT * FROM dept");
-
+			
+			pstmt = conn.prepareStatement("INSERT INTO dept VALUES(?,?,?)");
+			pstmt.setInt(1,16); // 첫번째 파라미터에 15 
+			pstmt.setString(2, "교육부");
+			pstmt.setString(3, "상암");
+			
+			//실제 DB에 SQL실행 메소드 
+			int result = pstmt.executeUpdate();
+			System.out.println(result);
+			
 		} catch (SQLException e) {
 			e.printStackTrace(); // 발생된 예외 상황 콘솔엥 출력
 			throw e;
 		} finally { // 예외 발생 여부와 무관하게 100% 실행, 신뢰영역
-			DBUtil.close(conn, stmt, rs);
+			DBUtil.close(conn, pstmt);
 
 		}
 //		System.out.println("예외 처리로 인해 정상, 비정상 이어도 실행되는 영역");
