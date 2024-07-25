@@ -22,17 +22,24 @@ public class ConnectionProperty2 {
 		Connection conn = null;
 		Statement stmt = null;
 		ResultSet rs = null;
-//		try {
-		// 데이터베이스 연결
-		conn = DBUtil.getConnection();
-		stmt = conn.createStatement();
-		rs = stmt.executeQuery("SELECT * FROM dept");
+		try {
+			// 데이터베이스 연결
+			conn = DBUtil.getConnection();
+			stmt = conn.createStatement();
+			rs = stmt.executeQuery("SELECT * FROM dept");
 
-//		} finally { // 예외 발생 여부와 무관하게 100% 실행, 신뢰영역
-		DBUtil.close(conn, stmt, rs);
+			while(rs.next()) {
+//				System.out.println(rs.getInt("deptno"));
 
-//		}
-		System.out.println("예외 처리로 인해 정상, 비정상 이어도 실행되는 영역");
+				System.out.println(rs.getInt("deptno") + " | " 
+									+ rs.getString(2) + " | " 
+									+ rs.getString(3));
+			}
+		} finally { // 예외 발생 여부와 무관하게 100% 실행, 신뢰영역
+			DBUtil.close(conn, stmt, rs);
+
+		}
+//		System.out.println("예외 처리로 인해 정상, 비정상 이어도 실행되는 영역");
 	}
 
 	@Test
@@ -46,12 +53,13 @@ public class ConnectionProperty2 {
 			stmt = conn.createStatement();
 			rs = stmt.executeQuery("SELECT * FROM dept");
 
-		} catch (Exception e) {
-			e.printStackTrace();
+		} catch (SQLException e) {
+			e.printStackTrace(); // 발생된 예외 상황 콘솔엥 출력
+			throw e;
 		} finally { // 예외 발생 여부와 무관하게 100% 실행, 신뢰영역
-			DBUtil.close(conn, stmt);
+			DBUtil.close(conn, stmt, rs);
 
 		}
-		System.out.println("예외 처리로 인해 정상, 비정상 이어도 실행되는 영역");
+//		System.out.println("예외 처리로 인해 정상, 비정상 이어도 실행되는 영역");
 	}
 }
