@@ -1,38 +1,57 @@
 package step01.basic;
 
-import java.io.FileInputStream;
-
 import java.sql.Connection;
-import java.sql.DriverManager;
+import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.Properties;
 
 import org.junit.Test;
 
 public class ConnectionProperty2 {
-
-	private static Properties p = new Properties();
+	/*
+	 * 경우의 수 1. 정상 실행 - 검색정보 client 에게 제공 2. 비정상 실행 - client 에게 상황은 반드시 언급 - 검색 데이터는
+	 * 정상 응답 불가 - 실행 유지..? ---- 개발 코드 관점에서 필수 항목 - 자원 반환 필수 - try ~ catch try ~
+	 * catch ~ finally try ~ finally
+	 * 
+	 * 
+	 */
 
 	@Test
-	public void connect() {
-		String url = p.getProperty("jdbc.url");
-		String user = p.getProperty("jdbc.id");
-		String password = p.getProperty("jdbc.pw");
+	public void connect() throws SQLException {
+		Connection conn = null;
+		Statement stmt = null;
+		ResultSet rs = null;
+//		try {
+		// 데이터베이스 연결
+		conn = DBUtil.getConnection();
+		stmt = conn.createStatement();
+		rs = stmt.executeQuery("SELECT * FROM dept");
 
+//		} finally { // 예외 발생 여부와 무관하게 100% 실행, 신뢰영역
+		DBUtil.close(conn, stmt, rs);
+
+//		}
+		System.out.println("예외 처리로 인해 정상, 비정상 이어도 실행되는 영역");
+	}
+
+	@Test
+	public void connect2() throws SQLException {
+		Connection conn = null;
+		Statement stmt = null;
+		ResultSet rs = null;
 		try {
 			// 데이터베이스 연결
-			Connection conn = DBUtil.getConnection();
-			System.out.println("데이터베이스에 성공적으로 연결되었습니다.");
-			// 연결 해제
-			conn.close();
-			System.out.println("연결이 성공적으로 해제되었습니다.");
+			conn = DBUtil.getConnection();
+			stmt = conn.createStatement();
+			rs = stmt.executeQuery("SELECT * FROM dept");
 
-		} catch (SQLException e) {
-			System.out.println("데이터베이스 연결 중 오류가 발생했습니다.");
+		} catch (Exception e) {
 			e.printStackTrace();
+		} finally { // 예외 발생 여부와 무관하게 100% 실행, 신뢰영역
+			DBUtil.close(conn, stmt);
+
 		}
-
 		System.out.println("예외 처리로 인해 정상, 비정상 이어도 실행되는 영역");
-
 	}
 }
