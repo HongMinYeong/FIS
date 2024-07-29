@@ -1,4 +1,4 @@
-package step01.basic;
+package db.util;
 
 import java.io.FileInputStream;
 import java.sql.Connection;

@@ -12,8 +12,8 @@ public class LevelUp5Optional {
 //		String s = null;
 //		System.out.println(s.length()); // java.lang.NullPointerException
 
-//		// step 01
-//		List<String> datas1 = Arrays.asList("1", "2", "3", "4", "5");
+////		// step 01
+////		List<String> datas1 = Arrays.asList("1", "2", "3", "4", "5");
 //
 //		List<String> datas2 = null;
 //
