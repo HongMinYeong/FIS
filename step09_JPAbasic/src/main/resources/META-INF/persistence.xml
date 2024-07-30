@@ -7,6 +7,7 @@
 	<persistence-unit name="dbinfo">
 		<!-- customer라는 table과 연결되도록 하는 속성 -->
 		<class>model.domain.entity.Customer</class>
+		<class>model.domain.entity.Dept</class>
 		<!-- oracle 설정 정보 -->
  <properties> 
  <property name="javax.persistence.jdbc.driver" value="oracle.jdbc.OracleDriver"/> 
