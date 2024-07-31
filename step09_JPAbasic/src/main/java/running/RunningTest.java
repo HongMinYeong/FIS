@@ -12,40 +12,35 @@ import model.domain.entity.Dept;
 import util.DBUtil;
 
 public class RunningTest {
-/* step04
-   dept entity 개발 -> 설정 파일 등록 -> 모든 부서 검색해서 출력
-   
-   JPA만의 select 문장 
-   - JPA 는 Entity 를 기반으로 RDBMS와 소통 
-   - select Entity_멤버변수명 from entity 명 (table 명이 아님요)
-   - select d from Dept d;
-   - Dept entity 의 모든 내용 검색 (모든 멤버 변수)
-     : rdbms) =  select * from dept;
-     			select d.name from dept;
-     			-> JPA) select d.name from Dept d;
-     				d: 참조변수로 간주
-     				d.name : d가 참조하는 객체의 name 멤버 변수명 호출 
-    
-*/
+	/*
+	 * step04 dept entity 개발 -> 설정 파일 등록 -> 모든 부서 검색해서 출력
+	 * 
+	 * JPA만의 select 문장 - JPA 는 Entity 를 기반으로 RDBMS와 소통 - select Entity_멤버변수명 from
+	 * entity 명 (table 명이 아님요) - select d from Dept d; - Dept entity 의 모든 내용 검색 (모든
+	 * 멤버 변수) : rdbms) = select * from dept; select d.name from dept; -> JPA) select
+	 * d.name from Dept d; d: 참조변수로 간주 d.name : d가 참조하는 객체의 name 멤버 변수명 호출
+	 * 
+	 */
 	@Test
 	public void step04() {
 		EntityManager em = DBUtil.getEntityManager();
-		
-		List<Dept> datas = em.createQuery("select d from Dept d",Dept.class).getResultList();
+
+		List<Dept> datas = em.createQuery("select d from Dept d", Dept.class).getResultList();
 		System.out.println(datas.size() + "\n");
-		
-		// 출력 
+
+		// 출력
 		datas.forEach(System.out::println);
-		
-		// ? Dept table 모든 부서 번호의 합 
-		int deptnoSum = em.createQuery("select d from Dept d",Dept.class).getResultStream().mapToInt(Dept::getDeptno).sum();
+
+		// ? Dept table 모든 부서 번호의 합
+		int deptnoSum = em.createQuery("select d from Dept d", Dept.class).getResultStream().mapToInt(Dept::getDeptno)
+				.sum();
 		System.out.println("\n**** 모든 부서 번호의 합 : " + deptnoSum + " ****\n");
-		
-		//? 부서 번호가 40 미만인 부서번호들만 합을 구하기 
-		int deptnoSum2 = em.createQuery("select d from Dept d",Dept.class).getResultStream().mapToInt(Dept::getDeptno).filter(deptno -> deptno < 40).sum();
+
+		// ? 부서 번호가 40 미만인 부서번호들만 합을 구하기
+		int deptnoSum2 = em.createQuery("select d from Dept d", Dept.class).getResultStream().mapToInt(Dept::getDeptno)
+				.filter(deptno -> deptno < 40).sum();
 		System.out.println("\n**** 40 미만인 모든 부서 번호의 합 : " + deptnoSum2 + " ****\n");
-		
-		
+
 		em.close();
 	}
 
