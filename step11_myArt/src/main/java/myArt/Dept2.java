@@ -1,4 +1,4 @@
-package step03.onetoonejoin;
+package myArt;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -15,28 +15,23 @@ import lombok.RequiredArgsConstructor;
 import lombok.Setter;
 import lombok.ToString;
 
-@NoArgsConstructor
 @AllArgsConstructor
-@RequiredArgsConstructor
-
+@NoArgsConstructor
 @Getter
 @Setter
 @ToString
 
-@SequenceGenerator(name = "team3_seq", sequenceName = "team3_seq_id",
-				   initialValue = 1, allocationSize = 50)
-//@Entity
-public class Team3 {
+@Entity
+public class Dept2 {
 
 	@Id
-	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "team3_seq")
-	@Column(name = "team_id")
-	private long teamId;
-	
-	@NonNull
-	@Column(name="team_name", length = 20)
-	private String teamName;
-	
-	
-	
+	@Column(name = "deptno")
+	private int deptno;
+
+	@Column(name = "dname", length = 20)
+	private String dname;
+
+	@Column(name = "loc", length = 20)
+	private String loc;
+
 }

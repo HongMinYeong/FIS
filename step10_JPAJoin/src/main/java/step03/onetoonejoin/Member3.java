@@ -26,7 +26,7 @@ import lombok.ToString;
 
 @SequenceGenerator(name = "member3_seq", sequenceName = "member3_seq_id", 
 				   allocationSize = 50, initialValue = 1)
-@Entity
+//@Entity
 public class Member3 {
 
 	@Id
@@ -53,6 +53,6 @@ public class Member3 {
 	@OneToOne // Memeber 하나는 Team 하나에 소속 
 	@JoinColumn(name="team_id")  //Team3의 pk 변수에 선언된 매핑된 컬럼명
 	private Team3 teamId;
-	// long 타입에서 Team3이라는 참고객체 
+	// long 타입에서 Team3이라는 참조객체 타입으로 변환   
 	
 }
