@@ -2,10 +2,12 @@ package step04.onetomany;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.SequenceGenerator;
@@ -42,7 +44,8 @@ public class Member4 {
 	private String name;
 	
 	@NonNull
-	@OneToOne //Member 하나는 Team 하나에 소속  //
+//	@ManyToOne //Member 하나는 Team 하나에 소속  //
+	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name="team_id")  
 	private Team4 teamId;
 	

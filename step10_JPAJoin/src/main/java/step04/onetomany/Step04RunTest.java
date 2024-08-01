@@ -1,5 +1,7 @@
 package step04.onetomany;
 
+import java.util.List;
+
 import javax.persistence.EntityManager;
 import javax.persistence.EntityTransaction;
 
@@ -9,12 +11,46 @@ import util.DBUtil;
 
 public class Step04RunTest {
 	
-	//step02 - 이미 존재하는 table과 데이터가 존재한다는 가정하에 실습 
-	// persistence.xml -> none 으로 설정 후 진행
-	//select로직 -> transaction필요 x
-	
+/* step03 - member 기준으로 team 정보 확인  
+ * 
+ */
 	@Test
-	public void step02Test() {
+	public void step04Test() {
+		EntityManager em = null;
+		
+		try {
+			em = DBUtil.getEntityManager();
+			
+			Member4 m = em.find(Member4.class,1L);
+			
+		
+			System.out.println("\n*************************************************\n");
+			System.out.println("  member_name  | "+m.getName()); // 손흥민
+			
+	
+			
+			
+			System.out.println("\n*************************************************\n");
+			
+		}catch(Exception e) {
+			e.printStackTrace();
+		}finally {
+			if(em != null) {
+				em.close();
+				em = null;
+			}
+		}
+	}
+		//step02 - 이미 존재하는 table과 데이터가 존재한다는 가정하에 실습 
+		// persistence.xml -> none 으로 설정 후 진행
+		//select로직 -> transaction필요 x
+		/*
+		 * 1번 실습 - 단순 팀 이름 검색
+		 * 2번 실습 - 팀에 소속된 첫번째 팀원 이름 검색 
+		 */
+		
+//	@Test
+	public void step03Test() {
 		EntityManager em = null;
 		
 		try {
@@ -32,9 +68,22 @@ public class Step04RunTest {
 			
 //			Team4 team = em.find(Team4.class,1); //?
 			Team4 team = em.find(Team4.class,1L); 
-			System.out.println("\n ***team 이름은 **** : "+team.getTeamName()); //축구1팀
+			System.out.println("\n*************************************************\n");
+			System.out.println("  team ID  | "+team.getTeamId() + " | team name  | " + team.getTeamName()); //축구1팀
+			
+			//step02 - 팀에 소속된 첫번째 팀원 이름 검색 (팀원명 검색)
+			 //이미 알고있는 team_id값으로 member 테이블 검색  
+			List<Member4> all = team.getMembers();
+			System.out.println("\n*************************************************\n");
+			System.out.println("\n  team1의 첫번째 member 명은  | "+all.get(0).getName());
+			
+			System.out.println("\n*************************************************\n");
+			System.out.println("\n  team1의 두번째 member 명은  | "+all.get(1).getName());
+			
+			//step03 - Member4의 @OneToOne -> @ManyToOne 으로 변경 
 			
 			
+			System.out.println("\n*************************************************\n");
 			
 		}catch(Exception e) {
 			e.printStackTrace();
