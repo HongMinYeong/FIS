@@ -6,6 +6,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.SequenceGenerator;
+import javax.persistence.Table;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -17,15 +18,19 @@ import lombok.ToString;
 
 @AllArgsConstructor
 @NoArgsConstructor
+@RequiredArgsConstructor
 @Getter
 @Setter
 @ToString
 
+
 @Entity
-public class Dept2 {
+@Table(name = "dept")
+public class Dept {
 
 	@Id
 	@Column(name = "deptno")
+	@NonNull
 	private int deptno;
 
 	@Column(name = "dname", length = 20)

@@ -1,7 +1,6 @@
 package myArt;
 
-import java.time.LocalDate;
-import java.util.Date;
+import java.sql.Date;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -10,8 +9,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
-
-import org.hibernate.annotations.GenerationTime;
+import javax.persistence.Table;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -28,39 +26,41 @@ import lombok.ToString;
 @Setter
 @ToString
 
+@Table(name = "emp")
 @Entity
-public class Emp2 {
+public class Emp {
 
-	@Id
-	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "emp2_seq") 
-	@Column(name = "empno")
-	private int empno;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "empno")
+    private int empno;
 
-	@NonNull
 	@Column(name = "ename", length = 20)
+	@NonNull
 	private String ename;
 
 	@Column(name = "job", length = 20)
-	@NonNull
 	private String job;
 
 	@Column(name = "mgr")
-	private int mgr;
+	private Integer mgr;
 
-	@GeneratedValue(strategy=GenerationType.AUTO)
 	@Column(name = "hiredate")
-	@NonNull
-	private LocalDate hiredate = LocalDate.now();
-	
+	private Date hiredate;
+
 	@Column(name = "sal")
-	private int sal;
+	private Integer sal;
 
 	@Column(name = "comm")
-	private int comm;
+	private Integer comm;
 
 	@OneToOne
 	@JoinColumn(name = "deptno")
-	@NonNull
-	private Dept2 deptno;
+	private Dept deptno;
+	
+    public Emp(int empno, String ename) {
+        this.empno = empno;
+        this.ename = ename;
+    }
 
 }
