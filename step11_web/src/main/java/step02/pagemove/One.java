@@ -25,7 +25,7 @@ public class One extends HttpServlet {
 		
 		request.setAttribute("heart", "@_@"); //새로운  데이터 저장
 		request.setAttribute("name", "양궁 선수");
-		request.getRequestDispatcher("two").forward(request, response);
+		request.getRequestDispatcher("two.jsp").forward(request, response);
 		
 		//redirect
 		//http://localhost/step11_web/pageMove.html
