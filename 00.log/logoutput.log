@@ -1,0 +1,9 @@
+2024-08-05 10:58:08 INFO  FirstServlet:19 - FirstServlet info() ***
+2024-08-05 10:58:08 WARN  FirstServlet:20 - FirstServlet warn() ***
+2024-08-05 10:58:08 ERROR FirstServlet:21 - FirstServlet error() ***
+2024-08-05 10:58:08 INFO  FirstServlet:27 - FirstServlet doGet info() ***
+2024-08-05 10:58:08 WARN  FirstServlet:28 - FirstServlet doGet warn() ***
+2024-08-05 10:58:08 ERROR FirstServlet:29 - FirstServlet doGet error() ***
+2024-08-05 10:58:14 INFO  FirstServlet:36 - FirstServlet doPost info() ***
+2024-08-05 10:58:14 WARN  FirstServlet:37 - FirstServlet doPost warn() ***
+2024-08-05 10:58:14 ERROR FirstServlet:38 - FirstServlet doPost error() ***

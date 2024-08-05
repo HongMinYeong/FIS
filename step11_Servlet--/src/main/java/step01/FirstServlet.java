@@ -13,13 +13,11 @@ import java.io.IOException;
 import org.apache.log4j.Logger;
 
 import jakarta.servlet.ServletException;
-import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 
 
-@WebServlet("/fisa")
 //http://localhost:8080/step11_Servlet/fisa
 public class FirstServlet extends HttpServlet {
 	//현 클래스에 로그기록을 하겠다는 설정

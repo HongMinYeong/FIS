@@ -3,22 +3,24 @@
 	xmlns="http://xmlns.jcp.org/xml/ns/javaee"
 	xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_4_0.xsd"
 	id="WebApp_ID" version="4.0">
-	<display-name>step11_Servlet</display-name>
-	<!-- url 입력 없이도 첫 화면에 보여지는 파일명 등록 -->
+	<display-name>step11_web</display-name>
 	<welcome-file-list>
 		<welcome-file>index.html</welcome-file>
+		<welcome-file>index.jsp</welcome-file>
+		<welcome-file>index.htm</welcome-file>
+		<welcome-file>default.html</welcome-file>
+		<welcome-file>default.jsp</welcome-file>
+		<welcome-file>default.htm</welcome-file>
 	</welcome-file-list>
 
-
-	<!-- url 매핑 -->
+	<!-- 사용자 정의 servlet url 매핑 -->
 	<servlet>
-		<servlet-name>a</servlet-name>
+		<servlet-name>test</servlet-name>
 		<servlet-class>step01.FirstServlet</servlet-class>
 	</servlet>
 
 	<servlet-mapping>
-		<servlet-name>a</servlet-name>
+		<servlet-name>test</servlet-name>
 		<url-pattern>/fisa</url-pattern>
 	</servlet-mapping>
-
 </web-app>
