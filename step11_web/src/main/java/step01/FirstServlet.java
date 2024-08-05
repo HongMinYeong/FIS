@@ -1,6 +1,6 @@
 package step01;
 
-//tomcat 9버전부터 package 명 : javax -> jakarta
+//tomcat 9버전부터 package 명 : javax -> jakarta 
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;

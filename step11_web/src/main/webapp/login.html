@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>login.html</title>
+</head>
+<!-- 
+action="login"
+	현 html 문서의 url 경로에서 login url 로 요청 의미
+		http://ip:port/context명/login.html 에서 
+		http://ip:port/context명/login 지정 
+		
+	 -->
+<body>
+	<h2>get 방식으로 로그인</h2>
+	<form action="login" method="get">
+		id : <input type="text" name="id"> <br> 
+		pw : <input
+			type="password" name="pw"> <br>
+		<input type="submit"
+			value="로그인">
+	</form>
+	<hr>
+	<h2>post 방식으로 로그인</h2>
+	<form action="login" method="post">
+		id : <input type="text" name="id"> <br>
+		pw : <input
+			type="password" name="pw"> <br>
+		<input type="submit"
+			value="로그인">
+	</form>
+
+</body>
+</html>
