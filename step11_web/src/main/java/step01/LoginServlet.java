@@ -1,6 +1,8 @@
 package step01;
 
 import java.io.IOException;
+import java.io.PrintWriter;
+
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
@@ -32,9 +34,20 @@ public class LoginServlet extends HttpServlet {
 		String id = request.getParameter("id");
 		String pw = request.getParameter("pw");
 		
-		System.out.println("\n id 는 **** :: " + id);
-		System.out.println("\n pw 는 **** :: " + pw);
-	
+		System.out.println("접속한 client -" + request.getRemoteAddr());
+//		System.out.println("\n id 는 **** :: " + id);
+//		System.out.println("\n pw 는 **** :: " + pw);
+//	
+		// 접속한 client 에게 응답하는 servlet 개발 기술
+		/* 응답 포맷과 인코딩 설정
+		 *  응답 데이터를 접속한 client 브라우저 출력 
+		 */
+		//html 포멧의 다국어 text 응답의미 
+		response.setContentType("text/html;charset=utf-8"); 
+		//2byte 단위로 출력
+		PrintWriter out = response.getWriter();
+		out.println("\n 너의 id -> " + id); //client 브라우저에 출력 
+		
 	}
 
 }

@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>pageMove.html</title>
+</head>
+<body>
+	<!-- http://ip:port/context/pageMove.html
+		1단계 
+			pageMove.html -> One.java (link): 요청 받고 Two 에게 응답 위임
+							-> Two.java :응답 전담 (view)
+		2단계 
+			pageMove.html -> One.java : 요청 받고 데이터 저장 후 Two 에게 응답 위임
+							-> Two.java :응답 전담 (view)
+		
+	 -->
+
+	<h2>html 파일에서 servlet 으로 화면이동</h2>
+
+	<br>
+	<hr>
+	<br>
+
+	<h3>step01 : html tag로 이동</h3>
+
+	<!-- 1. 단순링크 -->
+	<a href="one">one page로 이동 </a>
+
+
+	<br>
+	<br>
+
+	<!-- 2. form submit 버튼 -->
+	<form action="one" method="get">
+		<input type="submit" value="one page로 이동">
+	</form>
+
+	<br>
+	<br>
+
+	<!-- 3.javascipt button 방식  -->
+
+	<button onClick="location.href='one'">one page 로 이동</button>
+
+	<br>
+	<br>
+	
+	<hr>
+
+
+</body>
+</html>
