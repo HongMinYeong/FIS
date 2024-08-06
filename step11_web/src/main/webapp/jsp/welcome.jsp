@@ -1,0 +1,22 @@
+<%@ page contentType="text/html; charset=utf-8"%>
+
+<%
+//session 변수로 참조하는 내장 세션 객체 존재 
+	System.out.println(session.getId());
+
+	// 출력 내장 객체 존재 
+	out.println("1 - " + session.getAttribute("key1"));
+
+%>
+<br><hr><br>
+	
+<%-- 출력 2 번 --%>
+<%-- 퍼센트=는 출력태그  --%>
+2 - <%= session.getAttribute("key1") %>
+	<br><hr><br>
+	
+	
+3 - ${sessionScope.key1} 
+	<hr>
+ 
+ 	<a href='/step11_we/logout'>logout</a>

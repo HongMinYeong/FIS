@@ -58,9 +58,10 @@ public class LoginCheck extends HttpServlet {
 		response.addCookie(msg2);
 		
 		
-		
+		//html, jsp는 url 에 확장자 표현 필수
+		//servlet은 확장자 없이 url mapping 값으로 구성  
 		//redirect로 이동 
-		response.sendRedirect("view/welcome");
+		response.sendRedirect("jsp/welcome.jsp");
 		
 		//forward
 		//welcome 에서 login.html로 이동시 404 
