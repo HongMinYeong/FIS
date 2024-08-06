@@ -33,7 +33,7 @@ System.out.println(request.getAttribute("heart"));
   			request.setAttribute("heart","..") 로 저장한 데이터 착출
   			request.getAttribute("heart")와 동일한 코드 
   		
-  		C:\BOSS\FIS\.metadata\.plugins\org.eclipse.wst.server.core\tmp0\work\Catalina\localhost\step11_web\org\apache\jsp
+  		C:\BOSS\FIS\.metawdata\.plugins\org.eclipse.wst.server.core\tmp0\work\Catalina\localhost\step11_web\org\apache\jsp
   		실제 jsp 실행파일 경로 
   --%>
 
