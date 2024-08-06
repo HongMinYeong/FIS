@@ -15,8 +15,9 @@
 2 - <%= session.getAttribute("key1") %>
 	<br><hr><br>
 	
-	
+<%-- jsp 에서 자바코드는 최소화, 가장 권장하는 tag: EL   --%>
 3 - ${sessionScope.key1} 
-	<hr>
+
+<hr>
  
- 	<a href='/step11_we/logout'>logout</a>
+ 	<a href='/step11_web/logout'>logout</a>
