@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>js2Function.html</title>
+</head>
+<body>
+    <h3> 사용자 정의 함수 학습</h3>
+    <br><hr><br>
+
+    - 두개의 입력 form (input tag) 개발 및 값을 버튼 클릭시 크로스 <br>
+    - input tag의 name 속성명은 backend (java) 에서 데이터 뽑을때 (request.getParameter())
+    - input tag의 id 속성명은 html 문서 내부에서 tag 구분시 필수 <br>
+
+
+    <input type="text" id="one" value="fisa">-
+    <input type="text" id="two" value="클엔">-
+
+    <hr>
+    <div id="dataView"> </div>
+    <hr>
+    <button onclick=btnClick()>값 변경</button>
+    <script>
+        /* 
+        dom[Document Object Model] - 문서를 동적으로 변환시키는 기술 
+        element
+            - java : java.util package 의 데이터 타입 지정
+                    ArrayList<E> / add (E 변수)
+            - html/js : tag 자체를 의미
+        주요 API
+        1. getElementById("id별칭")
+        2. querySelector("id속성 or tag명 or class 속성")
+            = querySelector("input")
+            = # : id 
+            = 없음 : tag명
+            = . : class 명 
+            https://www.w3schools.com/cssref/css_selectors.php
+
+        */                
+        document.getElementById("dataView").innerText = "김혜경";
+        document.getElementById("two").value = "내 짝꿍";
+        
+        function btnClick(){
+            console.log('click');
+          
+            //tag 자체를 하나의 객체로 간주 및 관리  
+            temp = document.getElementById("two").value;
+            document.getElementById("two").value = document.getElementById("one").value;
+            document.getElementById("one").value = temp;
+        };
+    </script>
+    <button id="btn2" onclick=""> 소리지르기 </button>
+    <script>
+        // # : id 속성
+        // . : class 속성
+        // 이름만 : tag 명 
+
+        let btn = document.querySelector("#btn2");
+        /*  div tag
+            - 사용 빈도 매우 높음
+            - innerText - 순수 text 데이터 값만 브라우저에 출력
+            - innerHTML - html 구조 반영하면서 브라우저에 출력
+        */
+        btn.addEventListener("click",function btn2(){
+            // alert("아아아아아아아아아앙아악");
+            document.getElementById("dataView").innerHTML="<font color='red'>우리 fisa </font>";
+        })
+    </script>
+
+    <hr>
+    <div id="imgView" >
+
+    </div>
+    <hr>
+    <button id="btn3">주원이 이미지 출력하기 </button>
+
+<script>
+    document.querySelector("#btn3").addEventListener("click",function imageE(){
+        document.getElementById("imgView").innerHTML = "<img src='../images/unnamed.jpg'></img>"
+    });
+    </script>
+</body>
+</html>
