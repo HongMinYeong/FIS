@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>index.html</title>
+</head>
+<script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+<body>
+
+	<button id="dataViewPeople">People 정보</button>
+	<button id="dataViewPeople2">People 정보입력</button>
+	<br>
+	<div id="dataView"></div>
+
+
+	<script type="text/javascript">
+	
+	dataViewPeople2
+	.addEventListener(
+			"click",axios({
+				method:'get',
+				url:'http://localhost/ce/fisadata',
+				data:{
+					name:"연아",
+					age:10,
+				}
+			}).then((response) => console.log(response)));
+	
+	
+		// ? get 과 post 둘다 개별함수로 개발
+		//axios library 사용해서 개발
+	
+
+		//바닐라 js  
+		/* 서버와 클라이언트 소통 - 문자열
+		 서버 -> 클라이언트 : html/css/js 도 순수문자열로 간주 
+		 client 의 브라우저가 실행코드로 간주 후 브라우저 실행
+		 응답된 문자열 js 객체화 하는 형식은 JSON만 고려 
+		 단, json 변환가능한 문자열 형식이어야 JSON.parse()
+		 */
+		//http://ip:80/ce/index.html
+		/* dataViewPeople2.addEventListener("click",function(){
+			const xhttp = new XMLHttpRequest(); 
+			
+		xhttp.onreadystatechange = function() { 
+			if (this.readyState == 4 && this.status == 200) { 
+				let resData = this.responseText; 		
+			}
+			}
+			
+			xhttp.open("POST","fisadata");
+			//post 방식에 필수 설정  
+			xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+			xhttp.send("name=연아&age=10");
+
+		});
+		 */
+		dataViewPeople.addEventListener("click", function() {
+			alert(1);
+			const xhttp = new XMLHttpRequest(); //비동기 요청 자바스크립트 객체
+			xhttp.onreadystatechange = function() { //readyState 값이 변경될때마다 감지 및 동작 수행
+				if (this.readyState == 4 && this.status == 200) { //4 : 응답 완료 
+					let resData = this.responseText; //server 응답 데이터 가로채는 속성 
+					console.log(resData, typeof (resData));
+					console.log(resData.name, typeof (resData));
+
+					console.log("가공 직후 ***");
+					resData = JSON.parse(resData);
+					console.log(resData.name, typeof (resData));
+					/* 
+					div tag 에 데이터 또는 html 구조 자체를 출력하는 속성 
+					innerText - 순수 문자열, html 형식도 문자열로 간주
+					innerHTML - html 형식의 문자열을 html tag로 처리 
+					 */
+
+					dataView.innerText = restData.name;
+				}
+			}
+
+			xhttp.open("POST", "fisa");
+			xhttp.setRequestHeader("Content-type",
+					"application/x-www-form-urlencoded");
+			xhttp.send();
+
+		});
+	</script>
+</body>
+</html>

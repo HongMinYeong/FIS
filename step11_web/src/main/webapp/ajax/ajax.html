@@ -8,7 +8,27 @@
 	<h3>비동기 처리 기술 학습</h3>
 	<br>
 	<div id="imgView"></div>
+	<br>
+	<button id="btnView">이미지 보이기</button>
+	<button id="btnView2">이미지 숨기기</button>
+	<br>
+	<br>
+	<hr>
+	<br>
+	<button id="btnView3">json data 활용</button>
 	<script>
+		btnView.addEventListener("click", function() {
+			reqRes();
+		});
+
+		btnView2.addEventListener("click", function() {
+			imgView.innerHTML = null;
+		});
+
+		btnView3.addEventListener("click", function() {
+
+		});
+
 		function reqRes() {
 			// 비동기 기반의 요청, 응답 처리 기술
 			const xhttp = new XMLHttpRequest();
@@ -19,14 +39,19 @@
 			this.readyState 같이 변경 시마다 감지(on)를 해서 자동 호출되는 속성
 			 */
 			xhttp.onreadystatechange = function() {
-				alert(this.readyState);
 				// 응답완료 : 4 / 정상응답 : 200인 경우만 실행되는 블록의 조건식
 				if (this.readyState == 4 && this.status == 200) {
-					imgView.innerHTML = this.responseText;
+					// imgView.innerHTML = this.responseText;
+					let resData = this.responseText;
+					console.log(resData, typeof (resData));
+					console.log(resData.name, typeof (resData));
+					console.log("가공 직후");
+					resData = JSON.parse(resData);
+					console.log(resData.name, typeof (resData));
 				}
 			};
-			//xhttp.open("GET", "../ajaxfisa"); // get 방식으로 ajaxfisa 서블릿에게 요청 설정
-			xhttp.open("GET", "ajaxfisa.jsp"); // get 방식으로 ajaxfisa 서블릿에게 요청 설정
+			// xhttp.open("GET", "../ajaxfisa"); // get 방식으로 ajaxfisa 서블릿에게 요청 설정
+			xhttp.open("GET", "jsonRes.jsp"); // jsp에게 요청 및 응답
 			xhttp.send(); // 실제 서버에 요청 수행
 		}
 		reqRes();
@@ -38,10 +63,4 @@
 실행 process
 ajax.html <-> FisaServlet(ajaxfisa)
 ajax.html -> FisaServlet -> JSP -> ajax.html
- -->
-
-<!-- 
-실행 process
-ajax.html <-> FisaServlet (/ajaxfisa)
-ajax.html <-> FisaServlet -> jsp -< ajax.html
  -->
