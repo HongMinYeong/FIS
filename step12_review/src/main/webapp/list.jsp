@@ -6,6 +6,42 @@
 <head>
 <meta charset="UTF-8">
 <title>list.jsp</title>
+	<script>
+	/*
+		포함되는 read.jsp의 버튼 이벤트 처리하는 js
+		포함하게 되는 응답된 코드의 js 제어 코드는 list.js
+		- read.jsp
+		<form name="requestForm" method="post" action="board">
+			<input type="hidden" name="num" value="${requestScope.resultContent.num}">
+
+		- document : html문서 자체를 의미
+		- requestForm : document 하위의 특정 tag의 id
+		- command : name 속성값
+			조상, 부모, 자식 순으로 access
+		- document.requestForm.command.value 	
+			command value 속성에 값 대입하는 단순 코드
+			
+	*/
+	//수정 요청 로직 수행 기능
+		function sendUpdate(){
+			document.requestForm.command.value ="updateForm";
+			document.requestForm.submit();
+		}
+		
+		//삭제 요청 로직 수행 기능 
+		function sendDelete(){
+			//js의 확인 및 입력 가능한 창 + 확인, 취소 버튼을 제공하는 내장 함수 
+			var password = prompt("삭제할 게시물의 비밀번호를 입력하세요");
+			
+			if(password){  //데이터가 있으면 true
+				document.requestForm.command.value ="delete";  //command=delete
+				document.requestForm.password.value = password;  //hidden tag 에 입력된 pw값 대입
+				document.requestForm.submit();
+			}else{
+				return false;
+			}
+		}
+	</script>
 </head>
 
 <body>
@@ -81,10 +117,25 @@
 									기능 구현시 pk에 즉 게시글 구분하는 방명록 번호가 중요
 									요청시 게시글 보기와 방명록 번호값 전송 
 									 -->
-									<a href="board?command=view&num=${e.num}"> ${e.title}</a>
+									<%-- <a href="board?command=view&num=${e.num}"> ${e.title}</a> --%>
+									
+									<%-- step02 : 비동기 적용 영역 --%>
+									<a href="#" onclick="readOne(num=${e.num})">${e.title}</a>
 								</span>
 							</p>
 						</td>
+						<script>
+							function readOne(num) {
+								const xhttp = new XMLHttpRequest();
+								xhttp.onreadystatechange = function() {
+									if (this.readyState == 4 && this.status == 200) {
+										oneRead.innerHTML = this.responseText;
+									}
+								};
+								xhttp.open("GET", "board?command=view&num=" + num); 
+								xhttp.send(); // get방식 데이터 전송 스팩
+							}
+						</script>
 						<td bgcolor="">
 							<p align="center">
 								<span style="font-size: 9pt;"> <a href="mailto:${e.email}">
@@ -113,5 +164,8 @@
 		<span style="font-size: 9pt;">&lt;<a href="write.html">글쓰기</a>&gt;
 		</span>
 	</div>
+	
+	<hr>
+	<div id="oneRead"></div>
 </body>
 </html>

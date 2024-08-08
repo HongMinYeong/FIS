@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+	<h3>비동기 처리 기술 학습</h3>
+	<br>
+	<div id="imgView"></div>
+	<script>
+		function reqRes() {
+			// 비동기 기반의 요청, 응답 처리 기술
+			const xhttp = new XMLHttpRequest();
+
+			// 응답 시, 자동 실행되는 로직 등록 : 콜백함수
+			/*
+			서버와 클라이언트가 소통(요청과 응답) 진행 시점에 자동 실행
+			this.readyState 같이 변경 시마다 감지(on)를 해서 자동 호출되는 속성
+			 */
+			xhttp.onreadystatechange = function() {
+				alert(this.readyState);
+				// 응답완료 : 4 / 정상응답 : 200인 경우만 실행되는 블록의 조건식
+				if (this.readyState == 4 && this.status == 200) {
+					imgView.innerHTML = this.responseText;
+				}
+			};
+			//xhttp.open("GET", "../ajaxfisa"); // get 방식으로 ajaxfisa 서블릿에게 요청 설정
+			xhttp.open("GET", "ajaxfisa.jsp"); // get 방식으로 ajaxfisa 서블릿에게 요청 설정
+			xhttp.send(); // 실제 서버에 요청 수행
+		}
+		reqRes();
+	</script>
+</body>
+</html>
+
+<!-- 
+실행 process
+ajax.html <-> FisaServlet(ajaxfisa)
+ajax.html -> FisaServlet -> JSP -> ajax.html
+ -->
+
+<!-- 
+실행 process
+ajax.html <-> FisaServlet (/ajaxfisa)
+ajax.html <-> FisaServlet -> jsp -< ajax.html
+ -->
