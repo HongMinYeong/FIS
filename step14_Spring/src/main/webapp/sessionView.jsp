@@ -16,7 +16,7 @@
 	session.setAttribute("id", "user01");
 	session.setAttribute("pw", "77");
  --%>
-	1. ${sessionScope.id}  
+	1. ${sessionScope.id} 님 환영합니도  
 	
 	<br>
 	<button onclick="location.href='sessiontracking/logout1'">HttpSession 로그아웃</button>

@@ -3,7 +3,10 @@ package com.ce.fisa;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.CookieValue;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.SessionAttribute;
+import org.springframework.web.bind.annotation.SessionAttributes;
 
 import jakarta.servlet.http.HttpSession;
 
@@ -13,7 +16,22 @@ import jakarta.servlet.http.HttpSession;
  */
 
 @RequestMapping("sessiontracking")
+@SessionAttributes({"id","pw"})
 public class SessionTracking {
+	/* Spring API로 작업시
+	 * 1단계 - class 선언구에 사용하고자 하는 세션 key 명 등록 
+	 * 2단계 - controller 에서 설정한 key로 데이터 획득
+	 * 			@ModelAttribute("id") String id
+	 * 				= HttpSession session = request.getSession();
+	 * 			String id = (String)session.getAttribute("id");
+	 */
+	
+	//sessiontest2
+	@GetMapping("/sessiontest2")
+	public String m4(@ModelAttribute("id") String id,@ModelAttribute("pw") String pw) {
+		System.out.println("m4 메서드 실행중.... - " + id + " " + pw);
+		return "redirect:/sessionView.jsp";
+	}
 
 	//sessiongtracking/logout1 버튼 클릭시 HttpSession API 로 생성된 세션 삭제 
 	@GetMapping("/logout1")
