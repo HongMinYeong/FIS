@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.SessionAttribute;
 import org.springframework.web.bind.annotation.SessionAttributes;
+import org.springframework.web.bind.support.SessionStatus;
 
 import jakarta.servlet.http.HttpSession;
 
@@ -25,6 +26,18 @@ public class SessionTracking {
 	 * 				= HttpSession session = request.getSession();
 	 * 			String id = (String)session.getAttribute("id");
 	 */
+	
+	//logout2
+	@GetMapping("/logout2")
+	public String m5(SessionStatus status) { 
+		//@SessionAttributes 선언으로 사용한 세션 소멸하는 메서드
+		status.setComplete();
+		System.out.println("m5메서드 실행중......세션 소멸 성공");
+		return "redirect:/sessionView.jsp";
+	}
+	
+	
+	
 	
 	//sessiontest2
 	@GetMapping("/sessiontest2")
