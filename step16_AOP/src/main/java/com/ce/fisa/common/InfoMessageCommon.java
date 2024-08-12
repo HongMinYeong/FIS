@@ -7,9 +7,10 @@ import org.aspectj.lang.annotation.Aspect;
 import org.aspectj.lang.annotation.Before;
 import org.springframework.stereotype.Component;
 
+//step01 : before -> after -> after return -> after throws
+//step02 : 4가지 한번에 적용하는 기술 : around
 //공통 로직으로만 구성된 클래스  
-@Component // 스프링 빈으로 등록
-@Aspect
+
 public class InfoMessageCommon {
 
 	@Before("execution(* com.ce.fisa.biz.Car.*(..))")
@@ -21,7 +22,7 @@ public class InfoMessageCommon {
 	public void after() {
 		System.out.println("안녕히가세염 ㅠ ^ ㅠㅍ");
 	}
-	
+	//예외 발생시 리턴 실행 불가인 경우만 제외하고 리턴값이 있는 메소드 정상 실행시 실행 
 	//biz 메소드에 리턴값이 있다면 "리턴값 + 공통" 등으로 가공해서 출력
 	//biz 메소드의 반환값 받고 처리 
 	@AfterReturning(pointcut = "execution(* com.ce.fisa.biz.Car.*(..))" ,
