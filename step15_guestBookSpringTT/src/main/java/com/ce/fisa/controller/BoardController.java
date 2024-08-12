@@ -1,6 +1,5 @@
 package com.ce.fisa.controller;
 
-import java.io.IOException;
 import java.sql.SQLException;
 
 import org.springframework.stereotype.Controller;
@@ -22,9 +21,6 @@ import org.springframework.web.servlet.ModelAndView;
 import com.ce.fisa.model.guestbook.GuestBookBean;
 import com.ce.fisa.model.guestbook.GuestBookDAO;
 
-import jakarta.servlet.ServletException;
-import jakarta.servlet.http.HttpServletRequest;
-import jakarta.servlet.http.HttpServletResponse;
 
 @Controller
 public class BoardController {
