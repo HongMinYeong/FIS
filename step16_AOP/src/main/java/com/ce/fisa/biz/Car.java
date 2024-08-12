@@ -11,5 +11,13 @@ public class Car {
 	public void buy() {
 		System.out.println("biz buy()");
 	}
+	
+	public String buyReturn() throws Exception{
+		System.out.println("biz buyReturn()");
+		if(true) {
+			throw new Exception("예외발생");
+		}
+		return "리턴 데이터"; //예외 발생시 절대 실행 불가 따라서 공통의 리턴값 처리 메소드 실행 안함 
+	}
 
 }
